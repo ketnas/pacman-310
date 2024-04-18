@@ -60,9 +60,6 @@ class ReflexAgent(Agent):
 
     gameState.getScores():
         Returns all the scores of the agents in the game as a list where first score corresponds to agent 0
-
-    gameState.setScores(score):
-        Sets the scores of the agents in the game according to the list score where first score corresponds to agent 0
     
     gameState.getFood():
         Returns the food in the gameState
@@ -175,9 +172,6 @@ class MinimaxAgent(MultiAgentSearchAgent):
 
       gameState.getScores():
           Returns all the scores of the agents in the game as a list where first score corresponds to agent 0
-
-      gameState.setScores(score):
-          Sets the scores of the agents in the game according to the list score where first score corresponds to agent 0
       
       gameState.getFood():
           Returns the food in the gameState
