@@ -101,7 +101,6 @@ class ReflexAgent(Agent):
     successorGameState = currentGameState.generatePacmanSuccessor(action,agentIndex)
     newPos = successorGameState.getPacmanPosition(agentIndex)
     oldFood = currentGameState.getFood()
-
     return successorGameState.getScore(agentIndex)
 
 
@@ -179,8 +178,20 @@ class MinimaxAgent(MultiAgentSearchAgent):
       gameState.getPacmanPosition(agentIndex):
           Returns the pacman (agentIndex = 0 or 1) position in the gameState
 
-      gameState.getCapsules():
+      gameState.getCapsules()
           Returns the capsules in the gameState
+
+      gameState.getScaredTimes(agentIndex)
+          Returns remaining scared time for agentIndex
+      
+      gameState.getNumFood()
+          Returns the number of food in the gameState
+      
+      gameState.hasFood(x, y)
+          Returns True if there is food in the given (x, y) position
+
+      gameState.hasWall(x, y)
+          Returns True if there is a wall in the given (x, y) position
 
       self.depth:
         The depth to which search should continue
