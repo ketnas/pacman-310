@@ -129,9 +129,9 @@ class MultiAgentSearchAgent(Agent):
     is another abstract class.
   """
 
-  def __init__(self, evalFn = 'scoreEvaluationFunction', depth = '8',agentIndex=0):
+  def __init__(self, evalFn = 'evaluationFunction', depth = '8',agentIndex=0):
     self.index = agentIndex 
-    self.evaluationFunction = util.lookup(evalFn, globals())
+    # self.evaluationFunction = util.lookup(evalFn, globals())
     self.depth = int(depth)
 
 ######################################################################################
@@ -216,7 +216,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
       # print("score ",gameState.getScores())
       return bestAction
 
-  def minimax(self,gameState: GameState,agentIndex,depth):
+  def minimax(self,gameState: GameState, agentIndex,depth):
     if gameState.isWin() or gameState.isLose() or depth == 0:
       return self.evaluationFunction(gameState,agentIndex)
     
@@ -236,30 +236,20 @@ class MinimaxAgent(MultiAgentSearchAgent):
         best = min(best,self.minimax(successorGameState,(agentIndex+1)%2,depth-1))
       return best
 
-  def evaluationFunction(self, currentGameState: GameState, action: str,agentIndex=0) -> float:
+  def evaluationFunction(self, currentGameState: GameState, agentIndex=0) -> float:
     """
-    The evaluation function takes in the current and proposed successor
-    GameStates (pacman.py) and returns a number, where higher numbers are better.
-
-    The code below extracts some useful information from the state, like the
-    remaining food (oldFood) and Pacman position after moving (newPos).
-    newScaredTimes holds the number of moves that each ghost will remain
-    scared because of Pacman having eaten a power pellet.
-    """
-    # Useful information you can extract from a GameState (pacman.py)
-    successorGameState = currentGameState.generatePacmanSuccessor(action,agentIndex)
-    newPos = successorGameState.getPacmanPosition(agentIndex)
-    oldFood = currentGameState.getFood()
-
-    return successorGameState.getScore()
+    The evaluation function takes in the current
+    GameStates (pacman.py) and returns a score of that state.
+    """    
+    return currentGameState.getScore(agentIndex)
 
 ######################################################################################
 class YourTeamAgent(MultiAgentSearchAgent):
   """
     Your team agent
     แก้ เพิ่มเติม ได้ใน class นี้เท่านั้น
-    แต่ห้ามแก้ชื่อ class หรือ method ที่กำหนดให้
-    แต่เพิ่ม method เองได้ และเรียกใช้ได้ใน method ใน class นี้
+    แต่ห้ามแก้ชื่อ class และ getAction method ที่กำหนดให้
+    แต่เพิ่ม method เองได้ และเรียกใช้ method ใน class นี้เท่านั้น
   """
   def getAction(self, gameState: GameState,agentIndex = 0) -> str:
     pass
